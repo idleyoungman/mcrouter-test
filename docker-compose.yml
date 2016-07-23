@@ -7,9 +7,25 @@ services:
     depends_on:
      - memcache-0
      - memcache-1
+     - memcache-2
+     - memcache-3
   memcache-0:
     image: memcached
     command: memcached -R 128 -o modern
+    ports:
+      - 29990:11211
   memcache-1:
     image: memcached
     command: memcached -R 128 -o modern
+    ports:
+      - 29991:11211
+  memcache-2:
+    image: memcached
+    command: memcached -R 128 -o modern
+    ports:
+      - 29992:11211
+  memcache-3:
+    image: memcached
+    command: memcached -R 128 -o modern
+    ports:
+      - 29993:11211

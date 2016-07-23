@@ -5,7 +5,34 @@
         "memcache-0:11211",
         "memcache-1:11211"
       ]
+    },
+    "B": {
+      "servers": [
+        "memcache-2:11211",
+        "memcache-3:11211"
+      ]
     }
   },
-  "route": "PoolRoute|A"
+  "route": {
+    "type": "OperationSelectorRoute",
+    "default_policy": "PoolRoute|A",
+    "operation_policies": {
+      "add": {
+        "type": "AllFastestRoute",
+        "children": [ "PoolRoute|A", "PoolRoute|B" ]
+      },
+      "set": {
+        "type": "AllFastestRoute",
+        "children": [ "PoolRoute|A", "PoolRoute|B" ]
+      },
+      "delete": {
+        "type": "AllFastestRoute",
+        "children": [ "PoolRoute|A", "PoolRoute|B" ]
+      },
+      "get": {
+        "type": "MissFailoverRoute",
+        "children": [ "PoolRoute|A", "PoolRoute|B" ]
+      }
+    }
+  }
 }
