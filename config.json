@@ -1,0 +1,11 @@
+{
+  "pools": {
+    "A": {
+      "servers": [
+        "memcache-0:11211",
+        "memcache-1:11211"
+      ]
+    }
+  },
+  "route": "PoolRoute|A"
+}

@@ -1,0 +1,15 @@
+version: '2'
+services:
+  mcrouter:
+    build: .
+    ports:
+     - "5000:5000"
+    depends_on:
+     - memcache-0
+     - memcache-1
+  memcache-0:
+    image: memcached
+    command: memcached -R 128 -o modern
+  memcache-1:
+    image: memcached
+    command: memcached -R 128 -o modern
